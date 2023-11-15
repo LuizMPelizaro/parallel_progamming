@@ -1,6 +1,8 @@
 //
 // Created by siera on 12/11/2023.
 //
+#ifndef JOIN_THREADS_H
+#define JOIN_THREADS_H
 
 #include <iostream>
 #include <thread>
@@ -9,7 +11,7 @@ void test() {
     printf("Hello from test \n");
 }
 
-int main() {
+int run() {
     /*
      * LEMBRAR de que, para todas as threads joinables em seu programa, você deve chamar a função join ou detach.!!
      *
@@ -55,3 +57,4 @@ int main() {
     */
     return 0;
 }
+#endif // JOIN_THREADS_H

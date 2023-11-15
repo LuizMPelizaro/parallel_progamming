@@ -5,4 +5,10 @@ set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -mconsole")
 
 
 add_executable(parallel_programming
-        exercises/exercise_1.cpp)
+        main.cpp
+        exemple/handle_join_example/thread_guard.h
+        exemple/handle_join_example/handle_join.h
+        exemple/join_threads.h
+        exemple/join_threads.h
+        exemple/join_and_detach.h
+        exemple/initial_exampel_thread.h)

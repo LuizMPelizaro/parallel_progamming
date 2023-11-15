@@ -1,3 +1,5 @@
+#ifndef INITIAL_EXAMPEL_THREAD_H
+#define INITIAL_EXAMPEL_THREAD_H
 #include <iostream>
 #include <thread>
 
@@ -13,7 +15,7 @@ public:
 };
 
 
-int main() {
+int run() {
     std::thread thread1(foo);
 
     callable_class obj;
@@ -34,3 +36,4 @@ int main() {
     printf("Hello from main - %d !", std::this_thread::get_id());
     return 0;
 }
+#endif // INITIAL_EXAMPEL_THREAD_H
