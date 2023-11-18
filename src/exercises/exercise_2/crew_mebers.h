@@ -19,25 +19,40 @@
  * Qualquer outro comando no console deve imprimir comando invalido.
  * O comando de parada sera exit no meu caso.
 */
+/**
+ * \brief A classe crew members controla como que as atividades são executadas em um navio.
+ */
 class crew_mebers {
 public:
-    static void funcionability(crew_mebers* instace,const int function) {
+    /**
+     * \brief Essa função chama a tarefa a ser executada
+     *
+     * 0- Sai do programa
+     *
+     * 1- Limpa o navio -> pode ser executada em paralelo
+     *
+     * 2- Acelera o navio até a velocidade maxima -> Não pode ser executada em paralelo
+     *
+     * 3- Para o navio-> Não pode ser executada em paralelo
+     *
+     * \param function O numero da função que sera chamada para ser executada
+     */
+    static void funcionability(const int function) {
         switch (function) {
             case 0:
                 exit(EXIT_SUCCESS);
-                break;
             case 1: {
-                std::thread clean_thread(&crew_mebers::clean,instace);
+                std::thread clean_thread(&crew_mebers::clean);
                 clean_thread.detach();
                 break;
             }
             case 2: {
-                std::thread speed_up_thread(&crew_mebers::full_speed_ahead,instace);
+                std::thread speed_up_thread(&crew_mebers::full_speed_ahead);
                 speed_up_thread.join();
                 break;
             }
             case 3: {
-                std::thread stop_boat_thread(&crew_mebers::stop_the_engine, instace);
+                std::thread stop_boat_thread(&crew_mebers::stop_the_engine);
                 stop_boat_thread.join();
                 break;
             }
@@ -48,18 +63,27 @@ public:
     }
 
 private:
+    /**
+      * \brief Limpa o navio
+      */
     static void clean() {
         printf("I'm cleaning !\n");
-        std::this_thread::sleep_for(std::chrono::milliseconds(5000));
+        std::this_thread::sleep_for(std::chrono::milliseconds(7000));
         printf("Clean compleat !\n");
     }
 
+    /**
+      * \brief Acelera o navio
+      */
     static void full_speed_ahead() {
         printf("Speeding up !\n");
         std::this_thread::sleep_for(std::chrono::milliseconds(5000));
         printf("Full speed ahead !\n");
     }
 
+    /**
+      * \brief Freia o navio
+      */
     static void stop_the_engine() {
         printf("Slowing down !\n");
         std::this_thread::sleep_for(std::chrono::milliseconds(5000));
