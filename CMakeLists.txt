@@ -21,4 +21,6 @@ set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -mconsole")
 
 add_executable(parameters_threads
 #        src/exemple/parameters_threads/constructor_thread.cpp
-        src/exemple/parameters_threads/problems_reference.cpp)
+#        src/exemple/parameters_threads/problems_reference.cpp
+#        src/exemple/parameters_threads/tranferring_ownership_thread.cpp
+        src/exemple/parameters_threads/utilis_methods_threads.cpp)
