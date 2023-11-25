@@ -16,38 +16,56 @@
     ->O capitão (main) não precisa esperar que um comando termine, e ele deve passar pelo menos um segundo entre dois comandos.
 */
 
-int main(int argc, char* argv[]) {
-    workqueue clean_queue;
-    workqueue engine_queue;
-    int exit = 1;
-    int work = 0;
-    printf("Choice work:\n1-Clean work \n2-Full speed\n3-Stop boat\n0-Exit\n100-Stop Work\n");
-    while (exit != 0) {
-        std::cin >> work;
-        switch (work) {
-            case 0:
-                exit = 0;
-            case 1:
-                clean_queue.add_work(1);
-                break;
-            case 2:
-                engine_queue.add_work(1);
-                break;
-            case 3:
-                engine_queue.add_work(2);
-                break;
-            case 100:
-                printf("Insert value to stop work\n5-Clean work\n6-Engine work");
-                std::cin >> work;
-                if (work == 5) {
-
-                }
-                if(work == 6) {
-
-                }
-            default:
-                printf("Invalid work !");
+int main() {
+    std::queue<int> cleanWork;
+    std::queue<int> engineWork;
+    int choice;
+    int cleanWorkLenght = 0;
+    int engineWorkLenght = 0;
+    std::thread threadCleanWork(cleanWorkFunctions, std::ref(cleanWork), std::ref(cleanWorkLenght));
+    std::thread threadEngineWork(engineWorkFunctions, std::ref(engineWork), std::ref(engineWorkLenght));
+    int choiceWork;
+    while (true) {
+        std::cout << "CHOICE WORK:\n1-Clean work\n2-Engine works\n100-End works!\n" << std::endl;
+        std::cin >> choice;
+        if (choice == 1) {
+            std::cout << "Choice clean work\n"
+                    "1-Clean\n"
+                    "100-End work\n" << std::endl;
+            std::cin >> choiceWork;
+            if (choiceWork == 1) {
+                cleanWorkLenght++;
+                cleanWork.push(1);
+            }
+            if (choiceWork == 100) {
+                cleanWorkLenght--;
+                cleanWork.push(100);
+            }
+        }
+        if (choice == 2) {
+            std::cout << "Choice engine work\n"
+                    "1-Full speed ahead\n"
+                    "2-Stop ship\n"
+                    "100-End work\n" << std::endl;
+            std::cin >> choiceWork;
+            if (choiceWork == 1) {
+                engineWorkLenght++;
+                engineWork.push(1);
+            }
+            if (choiceWork == 2) {
+                engineWorkLenght++;
+                engineWork.push(2);
+            }
+            if (choiceWork == 100) {
+                engineWorkLenght--;
+                engineWork.push(100);
+            }
+        }
+        if (choice == 100) {
+            break;
         }
     }
+    threadCleanWork.join();
+    threadEngineWork.join();
     return 0;
 }

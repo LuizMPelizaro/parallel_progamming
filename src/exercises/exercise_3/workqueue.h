@@ -7,6 +7,7 @@
 #include <iostream>
 #include <queue>
 #include <thread>
+#include <chrono>
 
 /** Definição do problema
     ->Criar duas filas uma para engine workqueue e uma para clean workqueue.
@@ -20,19 +21,53 @@
 */
 
 
-class workqueue {
-
-public:
-    void add_work(int value) {
-        my_queue.push(value);
+inline void cleanWorkFunctions(std::queue<int>&work, const int&works) {
+    printf("Clean work function start.\n");
+    while (true) {
+        if (!work.empty()) {
+            printf("Clean work add in queue !\n");
+            std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+            work.pop();
+        }
+        if (work.empty() and works == 0) {
+            printf("No job in clean work queue !\n");
+            std::this_thread::sleep_for(std::chrono::milliseconds(2000));
+        }
+        if (work.front() == 100) {
+            printf("Clean work job is done !\n");
+            std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+        }
     }
+}
 
-    void work_concluid(int value) {
-        my_queue.pop();
+inline void engineWorkFunctions(std::queue<int>&works, const int&work) {
+    printf("Engine work functions start.\n");
+    while (true) {
+        if (!works.empty()) {
+            printf("Engine work add in queue !\n");
+            if (works.front() == 1) {
+                printf("Speeding up !\n");
+                std::this_thread::sleep_for(std::chrono::milliseconds(2000));
+                printf("Full speed ahead !\n");
+                works.pop();
+            }
+            if (works.front() == 2) {
+                printf("Slowing dowm !\n");
+                std::this_thread::sleep_for(std::chrono::milliseconds(2000));
+                printf("Stop compleat !\n");
+                works.pop();
+            }
+            std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+        }
+        if (works.empty() and work == 0) {
+            printf("No job in engine work queue !\n");
+            std::this_thread::sleep_for(std::chrono::milliseconds(2000));
+        }
+        if (works.front() == 100) {
+            printf("Engine work job is done !\n");
+            std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+        }
     }
-private:
-    std::queue<int> my_queue;
-};
-
+}
 
 #endif //WORKQUEUE_H
