@@ -25,7 +25,11 @@ set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -mconsole")
 #        src/exemple/parameters_threads/tranferring_ownership_thread.cpp
 #        src/exemple/parameters_threads/utilis_methods_threads.cpp)
 
-add_executable(exercise3
-        src/exercises/exercise_3/workqueue.cpp
-        src/exercises/exercise_3/workqueue.h
+#add_executable(exercise3
+#        src/exercises/exercise_3/workqueue.cpp
+#        src/exercises/exercise_3/workqueue.h
+#)
+
+add_executable(parallle_accumulate
+        src/exemple/parallel_accumulate/parallel_accumulate.cpp
 )
