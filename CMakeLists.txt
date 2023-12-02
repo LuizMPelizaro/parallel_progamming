@@ -30,6 +30,12 @@ set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -mconsole")
 #        src/exercises/exercise_3/workqueue.h
 #)
 
-add_executable(parallle_accumulate
-        src/exemple/parallel_accumulate/parallel_accumulate.cpp
+#add_executable(parallle_accumulate
+#        src/exemple/parallel_accumulate/parallel_accumulate.cpp
+#)
+
+add_executable(hello_mutex
+        src/exemple/hello_mutex/hello_mutex.cpp
+        src/exemple/hello_mutex/hello_mutex.h
+        src/exemple/hello_mutex/mutex_lock_guard.h
 )
