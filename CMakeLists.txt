@@ -40,7 +40,13 @@ set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -mconsole")
 #        src/exemple/hello_mutex/mutex_lock_guard.h
 #)
 
-add_executable(stack_implementation
-        src/exercises/stack_implementetion/stack_thread_safe.h
-        src/exercises/stack_implementetion/stack_thread_safe.cpp
-)
+#add_executable(stack_implementation
+#        src/exercises/stack_implementetion/stack_thread_safe.h
+#        src/exercises/stack_implementetion/stack_thread_safe.cpp
+#)
+
+#add_executable(bank_account
+##        src/exemple/deadlock/bank_account.cpp
+#        src/exemple/deadlock/bank_account.h
+#        src/exemple/deadlock/deadlock_exemple.cpp
+#)
