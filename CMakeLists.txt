@@ -50,3 +50,8 @@ set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -mconsole")
 #        src/exemple/deadlock/bank_account.h
 #        src/exemple/deadlock/deadlock_exemple.cpp
 #)
+
+add_executable(unique_lock
+        src/exemple/unique_lock/unique_locks_example.cpp
+        src/exemple/unique_lock/unique_locks_example.h
+)
